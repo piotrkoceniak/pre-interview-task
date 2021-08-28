@@ -1,0 +1,11 @@
+{
+  "name": "uk-police-data-handler",
+  "version": "1.0.0",
+  "description": "Fetching data from data.police.uk/api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Piotr Koceniak",
+  "license": "ISC"
+}
