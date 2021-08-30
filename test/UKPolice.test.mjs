@@ -24,4 +24,14 @@ describe('UKPolice', function() {
 
     
   });
+
+  describe('has method', function() {
+    beforeEach(function () {
+      this.currentTest.value = new UKPolice();
+    });
+
+    it('queryString', function() {
+      expect(this.test.value).to.respondTo('queryString');
+    });
+  });
 });
