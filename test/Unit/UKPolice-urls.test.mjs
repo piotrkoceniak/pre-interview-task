@@ -111,14 +111,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleNeighbourhoodId = 'NC13';
-      let badNeighbourhoodId = 'foobar';
-
-      it('reject not existing team', function() {
-        expect(() => this.test.value.neighbourhood(exampleForceId, badNeighbourhoodId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
 
       it('returns correct url', function() {
         assert.equal(

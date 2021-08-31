@@ -27,7 +27,6 @@ export class PoliceURL extends UsesFetch {
             else if(!this.teams[forceId]) throw new Error('Bad Argument');
 
             if(!neighbourhoodId) throw new Error('Missing Argument')
-            else if(!this.neighbourhood[neighbourhoodId]) throw new Error('Bad Argument');
 
             return this.baseURL + `${forceId}/${neighbourhoodId}`;
         },
@@ -104,8 +103,10 @@ export class PoliceURL extends UsesFetch {
             return this.baseURL + `crime-categories${this.queryString(['date'], [date])}`
         }
     }
-    crimeCategories = {};
-    teams = {};
+
+    crimeCategories = {}
+    teams = {}
+    lastUpdated = '2021-07';
 
     queryString(keys, values) {
         if(!keys || !values) throw new Error('Missing Argument')

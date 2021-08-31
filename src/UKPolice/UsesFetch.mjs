@@ -1,6 +1,18 @@
 export class UsesFetch {
-    async sendRequest(url, init = this.init) {
-        this.init = {};
+    setRequestBody(data) {
+        this.init.body = JSON.stringify(data);
+    }
+    setRequestMethod(method) {
+        this.init.method = method;
+    }
+
+    get(url, callback) {
+        let init = this.init;
+        this.init = false;
+        this.sendRequest(url, init, callback);
+    }
+    
+    async sendRequest(url, init = this.init, callback) {
         fetch(url, init)
             .then(function(response) {
                 if(!response.ok) {
@@ -8,7 +20,9 @@ export class UsesFetch {
                 }
                 return response.json();
             })
-            .then(this.handleResponse);
+            .then((response) => {
+                callback(this.handleResponse(response));
+            });
     }
 
     handleResponse(response) {
@@ -48,13 +62,8 @@ export class UsesFetch {
     get init() {
         return Object.assign({}, this.__init, this.init);
     }
-
-    set setRequestBody(data) {
-        this.init.body = JSON.stringify(data);
-    }
-
-    setInit(newInitObject) {
-        Object.assign(this.init, newInitObject);
+    set init(newInitObject) {
+        this.init = newInitObject ? this.init.merge(newInitObject) : {};
     }
 
 }
