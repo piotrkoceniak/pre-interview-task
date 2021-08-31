@@ -3,6 +3,8 @@ import 'chai';
 import { assert, expect } from 'chai';
 import { UKPolice } from '../js/UKPolice/UKPolice.mjs';
 
+// mocha test/*.test.mjs test/**/*.test.mjs
+
 describe('UKPolice', function() {
     it('class exists', function() {
         const object = new UKPolice();
@@ -21,7 +23,6 @@ describe('UKPolice', function() {
     it('urls', function() {
       expect(this.test.value.urls).to.be.an('object').that.is.not.empty;
     });
-
     
   });
 

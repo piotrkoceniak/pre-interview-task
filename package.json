@@ -4,7 +4,7 @@
   "description": "Fetching data from data.police.uk/api",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*.test.mjs test/**/*.test.mjs"
+    "test": "mocha test/Unit/UKPolice-requests.test.mjs"
   },
   "author": "Piotr Koceniak",
   "license": "ISC",
