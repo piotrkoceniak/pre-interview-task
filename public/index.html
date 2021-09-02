@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <title>Examples</title>
+        <meta name="author" content="Piotr Koceniak">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="styles.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    </head>
+    <body>
+        <h1>Example use of data fetched from Police API</h1>
+        <p>Custom build API client library is used.</p>
+        <main>
+            <section>
+                <h2>Shows crimes near center of map with selected options</h2>
+                <div>
+                    <div id="mapid"></div>
+                    <div id="mapHeader">
+                        <select id="mapCrimeCategory">
+                        </select>
+                        <select id="mapForce">
+                        </select>
+                        <select id="mapNeighbourhood">
+                            <option value="" disabled>
+                                Select neighbourhood
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div id="mapTitle">Example map with data from API</div>
+            </section>
+            <section>
+                <h2>Priorities of neighbourhood</h2>
+                <div>
+                    <ul id="priorities">
+                        
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        
+        <script src="main.js"></script>
+    </body>
+</html>

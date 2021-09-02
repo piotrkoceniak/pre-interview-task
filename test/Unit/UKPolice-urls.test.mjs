@@ -1,7 +1,7 @@
 import 'assert';
 import 'chai';
 import { assert, expect } from 'chai';
-import { UKPolice } from '../../js/UKPolice/UKPolice.mjs';
+import { UKPolice } from './../../src/UKPolice/UKPolice.mjs';
 
 
 describe('UKPolice property - URLS as methods returning url for', function() {
@@ -27,7 +27,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       })
       
       let exampleForce = 'lincolnshire';
-      let badForce = 'foobar';
 
       it('returns correct url', function() {
         assert.equal(
@@ -39,13 +38,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
 
       it('reject no input', function() {
         expect(this.test.value.neighbourhoods).to.throw('Missing Argument');
-      });
-      
-      it('rejects not existing', function() {
-        expect(() => this.test.value.neighbourhoods(badForce)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
       });
     });
 
@@ -63,20 +55,12 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleForceId = 'lincolnshire';
-      let badForceId = 'foobar';
 
       it('returns correct url', function() {
         assert.equal(
           this.test.value.force(exampleForceId),
           `https://data.police.uk/api/forces/${exampleForceId}`,
           'Example force not found.'
-          );
-      });
-
-      it('rejects not existing force', function() {
-        expect(() => this.test.value.force(badForceId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
           );
       });
     });
@@ -95,21 +79,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleForceId = 'lincolnshire';
-      let badForceId = 'foobar';
-
-      it('reject missing team', function() {
-        expect(() => this.test.value.neighbourhood(exampleForceId)).to.throw(
-          'Missing Argument'
-          );
-      });
-
-      it('reject not existing force', function() {
-        expect(() => this.test.value.neighbourhood(badForceId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
-
       let exampleNeighbourhoodId = 'NC13';
 
       it('returns correct url', function() {
@@ -136,15 +105,7 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleForceId = 'lincolnshire';
-      let badForceId = 'foobar';
-
-      it('reject not existing force', function() {
-        expect(() => this.test.value.officers(badForceId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
-
+ 
       it('returns correct url', function() {
         assert.equal(
           this.test.value.officers(exampleForceId),
@@ -168,14 +129,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleCategory = 'all-crime';
-      let badCategory = 'foobar';
-
-      it('reject not existing category', function() {
-        expect(() => this.test.value.crimesAtPoint(badCategory)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
 
       it('reject when missing coords', function() {
         expect(() => this.test.value.crimesAtPoint(exampleCategory)).to.throw(
@@ -357,23 +310,7 @@ describe('UKPolice property - URLS as methods returning url for', function() {
       });
 
       let exampleForceId = 'lincolnshire';
-      let badForceId = 'foobar';
       let exampleCategory = 'all-crime';
-      let badCategory = 'foobar';
-
-      it('reject not existing category', function() {
-        expect(() => this.test.value.crimesNoLocation(badCategory, exampleForceId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
-
-      it('rejects not existing force', function() {
-        expect(() => this.test.value.crimesNoLocation(exampleCategory, badForceId)).to.throw(
-          'Bad Argument',
-          'Bad force was undetected.'
-          );
-      });
 
       it('returns correct url', function() {
         let date = '2021-05';
@@ -405,10 +342,6 @@ describe('UKPolice property - URLS as methods returning url for', function() {
         assert.equal(
           this.test.value.crimeCategories(date),
           `https://data.police.uk/api/crime-categories?date=2021-05`
-          );
-        assert.equal(
-          this.test.value.crimeCategories(),
-          `https://data.police.uk/api/crime-categories?date=${new UKPolice().lastUpdated}`
           );
       });
     });

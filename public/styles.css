@@ -1,0 +1,40 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+main {
+    width: 100%;
+}
+
+section {
+    width: 100%;
+    position: relative;
+}
+section div {
+    position: inherit;
+}
+
+#mapid {
+    height: 70vh;
+    max-width: 80vw;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+#mapHeader {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    margin: 0 auto;
+    z-index: 900;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

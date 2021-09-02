@@ -11,34 +11,29 @@ export class PoliceURL extends UsesFetch {
             return this.baseURL + 'forces';
         },
         neighbourhoods(forceId) {
-            if(!forceId) throw new Error('Missing Argument')
-            else if(!this.teams[forceId]) throw new Error('Bad Argument');
+            if(!forceId) throw new Error('Missing Argument');
 
             return this.baseURL + `${forceId}/neighbourhoods`;
         },
         force(forceId) {
-            if(!forceId) throw new Error('Missing Argument')
-            else if(!this.teams[forceId]) throw new Error('Bad Argument');
+            if(!forceId) throw new Error('Missing Argument');
 
             return this.baseURL + `forces/${forceId}`;
         },
         neighbourhood(forceId, neighbourhoodId) {
-            if(!forceId) throw new Error('Missing Argument')
-            else if(!this.teams[forceId]) throw new Error('Bad Argument');
+            if(!forceId) throw new Error('Missing Argument');
 
             if(!neighbourhoodId) throw new Error('Missing Argument')
 
             return this.baseURL + `${forceId}/${neighbourhoodId}`;
         },
         officers(forceId) {
-            if(!forceId) throw new Error('Missing Argument')
-            else if(!this.teams[forceId]) throw new Error('Bad Argument');
+            if(!forceId) throw new Error('Missing Argument');
 
             return this.baseURL + `forces/${forceId}/people`;
         },
         crimesAtPoint(category, coords, date) {
-            if(!category) throw new Error('Missing Argument')
-            else if(!this.crimeCategories[category]) throw new Error('Bad Argument');
+            if(!category) throw new Error('Missing Argument');
 
             if(!coords) throw new Error('Missing Argument')
             else if(!Array.isArray(coords)) throw new Error('Bad Argument');
@@ -87,11 +82,9 @@ export class PoliceURL extends UsesFetch {
                 this.queryString(['coords', 'date'], [coords, date]);
         },
         crimesNoLocation(category, forceId, date = this.lastUpdated) {
-            if(!category) throw new Error('Missing Argument')
-            else if(!this.crimeCategories[category]) throw new Error('Bad Argument');
+            if(!category) throw new Error('Missing Argument');
 
-            if(!forceId) throw new Error('Missing Argument')
-            else if(!this.teams[forceId]) throw new Error('Bad Argument');
+            if(!forceId) throw new Error('Missing Argument');
 
             return this.baseURL + 'crimes-no-location' +
                 this.queryString(
@@ -101,12 +94,36 @@ export class PoliceURL extends UsesFetch {
         },
         crimeCategories(date = this.lastUpdated) {
             return this.baseURL + `crime-categories${this.queryString(['date'], [date])}`
+        },
+        lastUpdated() {
+            return this.baseURL + 'crime-last-updated';
+        },
+        boundary(forceId, neighbourhoodId) {
+            if(!forceId) throw new Error('Missing Argument');
+
+            if(!neighbourhoodId) throw new Error('Missing Argument');
+
+            return this.baseURL + `${forceId}/${neighbourhoodId}/boundary`;
+        },
+        locate(coords) {
+            if(!coords) throw new Error('Missing Argument');
+
+            return this.baseURL + 
+                `locate-neighbourhood?q=${coords[0]},${coords[1]}`;
+
+        },
+        priorities(forceId, neighbourhoodId) {
+            if(!forceId) throw new Error('Missing Argument');
+
+            if(!neighbourhoodId) throw new Error('Missing Argument')
+
+            return this.baseURL + `${forceId}/${neighbourhoodId}/priorities`;
         }
+
     }
 
-    crimeCategories = {}
-    teams = {}
-    lastUpdated = '2021-07';
+    crimeCategories = null;
+    lastUpdated = '';
 
     queryString(keys, values) {
         if(!keys || !values) throw new Error('Missing Argument')
@@ -156,7 +173,7 @@ export class PoliceURL extends UsesFetch {
                     if(points.length > 3000) throw new Error('Too long polygon. Use POST request.');
                     query += points ? `poly=${points}&` : '';
                     break;
-            }
+            } 
         }
 
         return query.substring(0, query.length - 1);

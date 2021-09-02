@@ -1,7 +1,7 @@
 import 'assert';
 import 'chai';
 import { assert, expect } from 'chai';
-import { UKPolice } from '../../js/UKPolice/UKPolice.mjs';
+import { UKPolice } from './../../src/UKPolice/UKPolice.mjs';
 
 describe('UKPolice method queryString', function() {
     it('exists', function() {

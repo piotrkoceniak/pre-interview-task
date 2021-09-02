@@ -2,17 +2,18 @@ export class UsesFetch {
     setRequestBody(data) {
         this.init.body = JSON.stringify(data);
     }
-    setRequestMethod(method) {
-        this.init.method = method;
-    }
 
     get(url, callback) {
-        let init = this.init;
-        this.init = false;
+        let init = null;
+        if(this.init === {}) {
+            init = Object.assign({}, this.__init, this.init);
+        }
+        
+        this.init = {};
         this.sendRequest(url, init, callback);
     }
     
-    async sendRequest(url, init = this.init, callback) {
+    async sendRequest(url, init, callback) {
         fetch(url, init)
             .then(function(response) {
                 if(!response.ok) {
@@ -26,44 +27,24 @@ export class UsesFetch {
     }
 
     handleResponse(response) {
-        if(this.handleStatus(response.status)) {
-            return response.body ? response.body : 'No results.';
-        } else return 'No contents.';
-    }
-
-    handleStatus(status) {
-        switch(status) {
-            case 200:
-                return true;
-                break;
-            case 404:
-                return false;
-                break;
-            case 503:
-                throw new Error('Too many results!');
-                break;
-        }
+        return response ? response : 'No results.';
     }
 
     __init = {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin', 
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
         body: ''
     }
     init = {};
 
     get init() {
+        console.log()
         return Object.assign({}, this.__init, this.init);
     }
     set init(newInitObject) {
-        this.init = newInitObject ? this.init.merge(newInitObject) : {};
+        this.init = newInitObject == false ? this.init.merge(newInitObject) : {};
     }
 
 }

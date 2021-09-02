@@ -1,7 +1,7 @@
 import 'assert';
 import 'chai';
 import { assert, expect } from 'chai';
-import { UKPolice } from '../src/UKPolice/UKPolice.mjs';
+import { UKPolice } from './../src/UKPolice/UKPolice.mjs';
 
 // mocha test/*.test.mjs test/**/*.test.mjs
 
