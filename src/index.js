@@ -32,6 +32,8 @@ var neighbourhood = document.getElementById('mapNeighbourhood');
 
 var priorities = document.getElementById('priorities');
 
+var localTeam = document.getElementById('team');
+
 var userLocation = window.navigator.geolocation;
 
 
@@ -117,6 +119,7 @@ neighbourhood
         event => {
             setBoundary(forceSelect.value, event.target.value);
             setPriorities(forceSelect.value, event.target.value);
+            setTeam(forceSelect.value, event.target.value);
     });
 category
     .addEventListener(
@@ -157,6 +160,7 @@ function setNeighbourhoods(id, selectOption = false) {
         }
 
         setPriorities(forceId, selectOption || response[0].id);
+        setTeam(forceId, selectOption || response[0].id);
     });
 }
 
@@ -233,6 +237,27 @@ function setPriorities(forceId, neighbourhoodId) {
                 item.innerHTML = text;
 
                 priorities.append(item);
+            })
+        }
+    )
+}
+
+function setTeam(forceId, neighbourhoodId) {
+    police.localTeam(
+        forceId,
+        neighbourhoodId,
+        response => {
+            clearChildren('team');
+
+            response.forEach(officer => {
+                var text = `<p>${officer.rank} ${officer.name}</p>`;
+                text += officer.bio ? officer.bio : '<p>Biography not available.</p>';
+                
+
+                var item = document.createElement('li');
+                item.innerHTML = text;
+
+                localTeam.append(item);
             })
         }
     )

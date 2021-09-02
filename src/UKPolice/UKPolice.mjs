@@ -21,6 +21,7 @@ export class UKPolice extends PoliceURL {
         this.urls.boundary = this.urls.boundary.bind(this);
         this.urls.locate = this.urls.locate.bind(this);
         this.urls.priorities = this.urls.priorities.bind(this);
+        this.urls.localTeam = this.urls.localTeam.bind(this);
     }
 
 
@@ -109,6 +110,12 @@ export class UKPolice extends PoliceURL {
     }
 
     // people
+    localTeam(forceId, neighbourhoodId, callbackFunction) {
+        this.get(
+            this.urls.localTeam(forceId, neighbourhoodId),
+            callbackFunction
+        );
+    }
 
     // priorities
     priorities(forceId, neighbourhoodId, callbackFunction) {

@@ -38,3 +38,7 @@ section div {
     justify-content: center;
     align-content: center;
 }
+
+#team li p:first-child {
+    font-weight: bold;
+}

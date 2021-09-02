@@ -118,6 +118,13 @@ export class PoliceURL extends UsesFetch {
             if(!neighbourhoodId) throw new Error('Missing Argument')
 
             return this.baseURL + `${forceId}/${neighbourhoodId}/priorities`;
+        },
+        localTeam(forceId, neighbourhoodId) {
+            if(!forceId) throw new Error('Missing Argument');
+
+            if(!neighbourhoodId) throw new Error('Missing Argument');
+
+            return this.baseURL + `${forceId}/${neighbourhoodId}/people`;
         }
 
     }
